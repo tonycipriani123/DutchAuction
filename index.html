@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Auction App</h1>
+        <label for="par-price">PAR PRICE:</label>
+        <input type="text" id="par-price">
+        <br>
+        <label for="margin-slider">Margin %:</label>
+        <input type="range" id="margin-slider" min="100" max="1000" step="100">
+        <br>
+        <label for="duration">Duration:</label>
+        <select id="duration">
+            <option value="7">7</option>
+            <option value="10" selected>10</option>
+            <option value="12">12</option>
+            <option value="18">18</option>
+        </select>
+        <br>
+        <button id="start-auction">Start Auction</button>
+        <br>
+        <textarea id="output" rows="5" cols="50" disabled></textarea>
+        <br>
+        <div id="player-buttons"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

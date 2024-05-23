@@ -1,0 +1,15 @@
+body {
+    font-family: Impact;
+}
+
+#app {
+    margin: 20px;
+}
+
+#output {
+    resize: none;
+}
+
+button {
+    margin-top: 10px;
+}
