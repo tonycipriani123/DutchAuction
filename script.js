@@ -1,12 +1,26 @@
 document.addEventListener("DOMContentLoaded", function() {
     const startButton = document.getElementById("start-auction");
     const outputText = document.getElementById("output");
-    const playerButtonsContainer = document.getElementById("player-buttons");
     const parPriceInput = document.getElementById("par-price");
     const marginSlider = document.getElementById("margin-slider");
     const durationSelect = document.getElementById("duration");
+    const playerButtons = document.querySelectorAll(".player-button");
+
+    let lastPrice = 0;
+    let auctionActive = false;
 
     startButton.addEventListener("click", startAuction);
+
+    playerButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            if (auctionActive) {
+                const color = button.id;
+                outputText.value = `${color} bought at ${lastPrice.toFixed(2)}`;
+                auctionActive = false;
+                disableButtons();
+            }
+        });
+    });
 
     function startAuction() {
         const price = parseInt(parPriceInput.value);
@@ -19,8 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         let margin = marginValue;
-        let keyPressed = false;
-        let lastPrice = 0;
+        auctionActive = true;
 
         const startPrice = Math.round((price * marginValue) / 100);
         const marginMod = marginValue / (duration / 0.05);
@@ -29,17 +42,18 @@ document.addEventListener("DOMContentLoaded", function() {
         outputText.value += "AUCTION COMMENCING.\n";
 
         resetButtons();
+        countdown(3, () => {
+            outputText.value = `${startPrice.toFixed(2)} | ${margin} %`;
+            startAuctionProcess(startPrice, marginMod, price);
+        });
+    }
 
-        countdown(3);
-
-        function countdown(i) {
-            if (i > 0) {
-                outputText.value = `${i}`; // Overwrite the last printout
-                setTimeout(() => countdown(i - 1), 1000);
-            } else {
-                outputText.value = `${startPrice.toFixed(2)} | ${margin} %`; // Overwrite the last printout
-                setTimeout(() => startAuctionProcess(startPrice, marginMod, price), 1000);
-            }
+    function countdown(i, callback) {
+        if (i > 0) {
+            outputText.value = `${i}`;
+            setTimeout(() => countdown(i - 1, callback), 1000);
+        } else {
+            callback();
         }
     }
 
@@ -49,31 +63,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function auction(price, marginMod) {
         let margin = parseInt(marginSlider.value);
-        let keyPressed = false;
-        let lastPrice = 0;
+        auctionActive = true;
 
         auctionStep();
 
         function auctionStep() {
-            if (margin > 0 && !keyPressed) {
+            if (margin > 0 && auctionActive) {
                 lastPrice = Math.round((margin / 100) * price);
-                outputText.value = `${lastPrice.toFixed(2)} | ${Math.round(margin)} %`; // Overwrite the last printout
+                outputText.value = `${lastPrice.toFixed(2)} | ${Math.round(margin)} %`;
                 margin -= marginMod;
                 setTimeout(auctionStep, 50);
-            } else if (!keyPressed) {
-                outputText.value = "NO BID"; // Overwrite the last printout
+            } else if (auctionActive) {
+                outputText.value = "NO BID";
                 disableButtons();
+                auctionActive = false;
             }
         }
     }
 
     function disableButtons() {
-        // Implement disabling buttons
+        playerButtons.forEach(button => {
+            button.disabled = true;
+        });
     }
 
     function resetButtons() {
-        // Implement resetting buttons
+        playerButtons.forEach(button => {
+            button.disabled = false;
+        });
     }
-
-    // Other functions and event listeners go here
 });
