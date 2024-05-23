@@ -9,25 +9,34 @@
 <body>
     <div id="app">
         <h1>Auction App</h1>
-        <label for="par-price">PAR PRICE:</label>
-        <input type="text" id="par-price">
-        <br>
-        <label for="margin-slider">Margin %:</label>
-        <input type="range" id="margin-slider" min="100" max="1000" step="100">
-        <br>
-        <label for="duration">Duration:</label>
-        <select id="duration">
-            <option value="7">7</option>
-            <option value="10" selected>10</option>
-            <option value="12">12</option>
-            <option value="18">18</option>
-        </select>
-        <br>
-        <button id="start-auction">Start Auction</button>
-        <br>
-        <textarea id="output" rows="5" cols="50" disabled></textarea>
-        <br>
-        <div id="player-buttons"></div>
+        <div class="input-section">
+            <label for="par-price">PAR PRICE:</label>
+            <input type="text" id="par-price">
+            <br>
+            <label for="margin-slider">Margin %:</label>
+            <input type="range" id="margin-slider" min="100" max="1000" step="100">
+            <br>
+            <label for="duration">Duration:</label>
+            <select id="duration">
+                <option value="7">7</option>
+                <option value="10" selected>10</option>
+                <option value="12">12</option>
+                <option value="18">18</option>
+            </select>
+            <br>
+            <button id="start-auction">Start Auction</button>
+        </div>
+        <div class="output-section">
+            <textarea id="output" rows="5" cols="50" disabled></textarea>
+        </div>
+        <div id="player-buttons" class="buttons-section">
+            <button class="player-button red" id="Red">Red</button>
+            <button class="player-button green" id="Green">Green</button>
+            <button class="player-button blue" id="Blue">Blue</button>
+            <button class="player-button yellow" id="Yellow">Yellow</button>
+            <button class="player-button purple" id="Purple">Purple</button>
+            <button class="player-button black" id="Black">Black</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
