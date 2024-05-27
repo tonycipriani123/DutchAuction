@@ -3,41 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auction App</title>
+    <title>Dutch Auction App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
-        <h1>Auction App</h1>
-        <div class="input-section">
-            <label for="par-price">PAR PRICE:</label>
-            <input type="text" id="par-price">
-            <br>
-            <label for="margin-slider">Margin %:</label>
-            <input type="range" id="margin-slider" min="100" max="1000" step="100">
-            <br>
-            <label for="duration">Duration:</label>
-            <select id="duration">
-                <option value="7">7</option>
-                <option value="10" selected>10</option>
-                <option value="12">12</option>
-                <option value="18">18</option>
-            </select>
-            <br>
-            <button id="start-auction">Start Auction</button>
+    <div id="homeScreen" class="screen">
+        <h1>Welcome to Dutch Auction</h1>
+        
+        <div class="input-group">
+            <label for="parPrice">Par Price ($):</label>
+            <input type="text" id="parPrice" placeholder="Enter par price">
         </div>
-        <div class="output-section">
-            <textarea id="output" rows="5" cols="50" disabled></textarea>
+        
+        <div class="input-group">
+            <label for="margin">Margin (%):</label>
+            <input type="number" id="margin" value="200" step="100" min="200" max="1000">
         </div>
-        <div id="player-buttons" class="buttons-section">
-            <button class="player-button red" id="Red">Red</button>
-            <button class="player-button green" id="Green">Green</button>
-            <button class="player-button blue" id="Blue">Blue</button>
-            <button class="player-button yellow" id="Yellow">Yellow</button>
-            <button class="player-button purple" id="Purple">Purple</button>
-            <button class="player-button black" id="Black">Black</button>
+
+        <div class="input-group">
+            <label for="timer">Auction Duration (seconds):</label>
+            <input type="range" id="timer" value="8" min="8" max="24">
+            <span id="timerValue">8</span> seconds
         </div>
+
+        <button id="startAuctionButton">Start Auction</button>
+
+        <hr>
+
+        <div id="lastAuctionResult"></div>
     </div>
+    
+    <div id="auctionScreen" class="screen" style="display: none;">
+        <h1>Dutch Auction</h1>
+        <p id="countdown" style="font-size: 2em;"></p>
+        <p id="currentPrice">Current Price: $0</p>
+        <p id="currentMargin">Current Margin: 0%</p>
+
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
+        
+        <div class="bid-buttons">
+            <button class="bid-button" style="background-color: red;" data-color="Red">Red</button>
+            <button class="bid-button" style="background-color: green;" data-color="Green">Green</button>
+            <button class="bid-button" style="background-color: blue;" data-color="Blue">Blue</button>
+            <button class="bid-button" style="background-color: yellow;" data-color="Yellow">Yellow</button>
+            <button class="bid-button" style="background-color: purple;" data-color="Purple">Purple</button>
+            <button class="bid-button" style="background-color: black; color: white;" data-color="Black">Black</button>
+        </div>
+        
+        <p id="winnerMessage"></p>
+        <button id="resetButton" style="display: none;">Reset</button>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

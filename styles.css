@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.screen {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+.input-group {
+    margin: 10px 0;
+}
+
+input, label {
+    display: block;
+    width: 100%;
+}
+
+input[type="range"] {
+    width: calc(100% - 60px);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#timerValue {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+#progressBarContainer {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+#progressBar {
+    height: 20px;
+    width: 100%;
+    background-color: #4caf50;
+}
+
+.bid-buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.bid-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+#resetButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Landscape orientation styles */
+@media screen and (max-width: 767px) and (orientation: landscape) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .screen {
+        width: 80%;
+    }
+
+    .input-group {
+        margin: 10px 0;
+        text-align: left; /* Align input labels and fields to the left */
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: calc(100% - 20px); /* Adjust input width */
+    }
+
+    input[type="range"] {
+        width: calc(100% - 60px); /* Adjust range input width */
+    }
+}
